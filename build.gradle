@@ -10,15 +10,7 @@ repositories {
     mavenCentral()
 }
 
-configurations {
-    provided
-}
 
-sourceSets {
-    main {
-        compileClasspath += configurations.provided
-    }
-}
 
 ext {
 
@@ -26,7 +18,7 @@ ext {
     springDataVersion = '2.0.1.RELEASE'
     thymleafVersion = '3.0.9.RELEASE'
     springThymleafSpringsecurity = '3.0.2.RELEASE'
-    javaServletVersion = '3.0.1.RELEASE'
+    //javaServletVersion = '3.0.1'
     hibernateCoreVersion = '5.2.12.Final'
     validationApiVersion = '2.0.0.Final'
     hibernateValidatorVersion = '6.0.4.Final'
@@ -50,7 +42,7 @@ dependencies {
     compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity4:$springThymleafSpringsecurity"
     compile "org.thymeleaf:thymeleaf-spring5:$thymleafVersion"
 //    servlet
-    provided "javax.servlet:servlet-api:$javaServletVersion"
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
 //    hibernate
     compile "org.hibernate:hibernate-core:$hibernateCoreVersion"
 
