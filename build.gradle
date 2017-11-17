@@ -1,0 +1,17 @@
+group 'com.pro.cms'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '5.0.1.RELEASE'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
