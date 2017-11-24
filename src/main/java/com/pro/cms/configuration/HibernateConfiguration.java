@@ -1,5 +1,7 @@
 package com.pro.cms.configuration;
 
+import com.pro.cms.support.FlywayMigration;
+import org.flywaydb.core.Flyway;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +20,20 @@ import java.util.Properties;
 @EnableTransactionManagement
 @PropertySource(value = { "classpath:application.properties" })
 public class HibernateConfiguration {
+
+    @Bean(initMethod = "migrateDatabase")
+    FlywayMigration flyway() {
+        FlywayMigration flyway = new FlywayMigration();
+        flyway.setEnableMigration(true);
+        flyway.setBaseline(true);
+        flyway.setMigrateScriptPrefix(environment.getRequiredProperty("flyway.migration.script.prefix"));
+        flyway.setMigrateScriptSeparator(environment.getRequiredProperty("flyway.migration.script.separator"));
+        flyway.setMigrateScriptSuffix(environment.getRequiredProperty("flyway.migration.script.suffix"));
+        flyway.setMigrateTable(environment.getRequiredProperty("flyway.migration.table"));
+        flyway.setMigrateDataSource(dataSource());
+        return flyway;
+    }
+
 
     @Autowired
     private Environment environment;
