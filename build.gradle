@@ -10,9 +10,9 @@ repositories {
     mavenCentral()
 }
 
-configurations.all {
-    exclude group: 'org.slf4j', module: 'slf4j-log4j12'
-}
+//configurations.all {
+//    exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+//}
 
 
 
@@ -62,12 +62,11 @@ dependencies {
     compile "mysql:mysql-connector-java:$mysqlConnectorVersion"
 
 //    SLF4J/Logback
-    compile "ch.qos.logback:logback-classic:$logBackClassicVersion"
-//    compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.2'
-//    compile group: 'ch.qos.logback', name:'logback-classic', version: '1.0.9'
-//    compile group: 'ch.qos.logback', name:'logback-core', version: '1.0.9'
+    compile ("ch.qos.logback:logback-classic:$logBackClassicVersion"){
+            exclude group: 'org.slf4j'
+    }
+    compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.2'
 
-//    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.9.1'
 
 //    Spring Security
     compile "org.springframework.security:spring-security-web:$springSecurityWebVersion"
@@ -79,5 +78,7 @@ dependencies {
 //    Apache Commons Upload
     compile "commons-fileupload:commons-fileupload:$commonFileVersion"
 
-    compile "org.flywaydb:flyway-maven-plugin:$flyWayVersion"
+    compile ("org.flywaydb:flyway-maven-plugin:$flyWayVersion"){
+        exclude group: 'org.slf4j'
+    }
 }

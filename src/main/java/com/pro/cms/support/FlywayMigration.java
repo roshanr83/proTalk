@@ -14,7 +14,7 @@ public class FlywayMigration {
     /** Tracking system operations. */
     private static final Logger LOGGER = LoggerFactory.getLogger(FlywayMigration.class);
 
-    /** The migrate data source. */
+    /** Migrate data source. */
     private DataSource migrateDataSource;
 
     /** The enable migration. */
@@ -172,12 +172,12 @@ public class FlywayMigration {
      */
     public void migrateDatabase() {
         if (enableMigration) {
-            LOGGER.info("========================= Start Flyway Migration ============================");
+            LOGGER.info("========================= Starting Flyway Migration ============================");
 
             // Create the Flyway instance
             Flyway flyway = new Flyway();
 
-            // Point it to the database
+            // Pointing it to the database
             flyway.setDataSource(migrateDataSource);
 
             // Set properties for migration
@@ -190,7 +190,7 @@ public class FlywayMigration {
 
             // Start the migration
             flyway.migrate();
-            LOGGER.info("========================= Finish Flyway Migration ============================");
+            LOGGER.info("========================= Finishing Flyway Migration ============================");
         }
     }
 
